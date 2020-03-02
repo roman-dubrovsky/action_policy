@@ -85,11 +85,11 @@ module ActionPolicy # :nodoc:
 
         next unless ::Rails.application.config.action_policy.auto_inject_into_controller
 
-        ActionController::Base.include ActionPolicy::Controller
+        ActionController::Metal.include ActionPolicy::Controller
 
         next unless ::Rails.application.config.action_policy.controller_authorize_current_user
 
-        ActionController::Base.authorize :user, through: :current_user
+        ActionController::Metal.authorize :user, through: :current_user
       end
 
       ActiveSupport.on_load(:action_cable) do
